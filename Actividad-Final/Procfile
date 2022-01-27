@@ -1,0 +1,1 @@
+web: java -jar ./target/Actividad-Final-1.0-jar-with-dependencies.jar

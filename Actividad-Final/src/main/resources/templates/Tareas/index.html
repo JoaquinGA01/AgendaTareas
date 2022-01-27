@@ -1,0 +1,155 @@
+<!DOCTYPE HTML>
+<!--
+	Strata by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Lista de Tareas</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="/app/target/classes/templates/Tareas/assets/css/main.css" />
+</head>
+
+<body class="is-preload">
+
+	<!-- Header -->
+	<header id="header">
+		<div class="inner">
+			<h1><strong><span th:utext="${Nombre}"></span></strong><br />
+				Total de Tareas: <span th:utext="${TotalTareas}">No registrado</span></h1>
+				<h1>  <a href="#TareaNueva">Registrar Tarea</a> </h1>
+		</div>
+	</header>
+
+	<!-- Main -->
+	<div id="main">
+
+		<!-- Two -->
+		<section id="two">
+			<h1>Lista de Tareas</h1>
+			<div th:switch="${Existen}">
+				<div th:case="Si">
+					<div th:each="tarea: ${Tareas}">
+						<div th:switch="${tarea.Prioridad}">
+							<div th:case="Alta" class="row">
+								<article class="col-6 col-12-xsmall work-item">
+									<!-- <a href="templates/Tareas/images/thumbs/01.jpg" class="image fit thumb"><img
+											src="templates/Tareas/images/thumbs/01.jpg" alt="" /></a>-->
+									<h2> <span th:utext="${tarea.Titulo}"> Sin Titulo</span> </h2>
+									<p> <span th:utext="${tarea.Descripcion}"> Sin Descripcion </span> </p>
+									<a class="image fit thumb" th:href=" @{tmp/} + ${tarea.ImagenPath}"> <img
+											th:src=" @{tmp/} + ${tarea.ImagenPath}" alt=""> </a>
+								</article>
+							</div>
+						</div>
+					</div>
+					<div th:each="tarea: ${Tareas}">
+						<div th:switch="${tarea.Prioridad}">
+							<div th:case="Media" class="row">
+								<article class="col-6 col-12-xsmall work-item">
+									<!-- <a href="templates/Tareas/images/thumbs/01.jpg" class="image fit thumb"><img
+											src="templates/Tareas/images/thumbs/01.jpg" alt="" /></a>-->
+									<h3> <span th:utext="${tarea.Titulo}"> Sin Titulo</span> </h3>
+									<p> <span th:utext="${tarea.Descripcion}"> Sin Descripcion </span> </p>
+									<a class="image fit thumb" th:href=" @{tmp/} + ${tarea.ImagenPath}"> <img
+										th:src=" @{tmp/} + ${tarea.ImagenPath}" alt=""> </a>
+								</article>
+							</div>
+						</div>
+					</div>
+					<div th:each="tarea: ${Tareas}">
+						<div th:switch="${tarea.Prioridad}">
+							<div th:case="Baja" class="row">
+								<article class="col-6 col-12-xsmall work-item">
+									<!-- <a href="templates/Tareas/images/thumbs/01.jpg" class="image fit thumb"><img
+											src="templates/Tareas/images/thumbs/01.jpg" alt="" /></a>-->
+									<h3> <span th:utext="${tarea.Titulo}"> Sin Titulo</span> </h3>
+									<p> <span th:utext="${tarea.Descripcion}"> Sin Descripcion </span> </p>
+									<a class="image fit thumb" th:href=" @{tmp/} + ${tarea.ImagenPath}"> <img
+										th:src=" @{tmp/} + ${tarea.ImagenPath}" alt=""> </a>
+								</article>
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+				<div th:case="No" class="row">
+
+					<h3>No Hay Tareas</h3>
+
+				</div>
+			</div>
+		</section>
+
+
+
+		<!-- Four -->
+
+		<section id="TareaNueva">
+			<h1>Tarea Nueva</h1>
+			<input type="hidden" name="Correo" id="Correo" th:value="${Correo}">
+			<input type="hidden" name="Pass" id="Pass" th:value="${Pass}">
+			<div class="row gtr-uniform gtr-50">
+				<div class="col-6-1 col-12-xsmall">
+					<input type="text" name="NombreTarea" id="NombreTarea" value="" placeholder="Nombre de la Tarea" />
+				</div>
+				<div class="col-4 col-12-small">
+					<input type="radio" id="demo-priority-low" name="demo-priority" checked>
+					<label for="demo-priority-low">Baja Prioridad</label>
+				</div>
+				<div class="col-4 col-12-small">
+					<input type="radio" id="demo-priority-normal" name="demo-priority">
+					<label for="demo-priority-normal">Media Prioridad</label>
+				</div>
+				<div class="col-4 col-12-small">
+					<input type="radio" id="demo-priority-high" name="demo-priority">
+					<label for="demo-priority-high">Alta Prioridad	</label>
+				</div>
+				<div class="col-12">
+					<textarea name="DescripcionTarea" id="DescripcionTarea" placeholder="Escribe tu tarea"
+						rows="6"></textarea>
+				</div>
+				<div class="col-12">
+					<ul class="actions">
+						<li>
+							<input type="file" name="ImagenTarea" id="ImagenTarea" accept="image/*">
+						</li>
+					</ul>
+				</div>
+				<div class="col-12">
+					<ul class="actions">
+						<li><input type="button" id="btnAgregar" value="Agregar Tarea" /></li>
+						<li><input type="button" id="btnLimpiar" value="Limpiar" /></li>
+					</ul>
+				</div>
+
+			</div>
+		</section>
+	</div>
+
+	<!-- Footer -->
+	<footer id="footer">
+		<div class="inner">
+			<ul class="copyright">
+				<li>Diseñado por: <a href="#">-----</a></li>
+			</ul>
+		</div>
+	</footer>
+
+	<!-- Scripts -->
+	<script src="/app/target/classes/templates/Tareas/assets/js/jquery.min.js"></script>
+	<script src="/app/target/classes/templates/Tareas/assets/js/jquery.poptrox.min.js"></script>
+	<script src="/app/target/classes/templates/Tareas/assets/js/browser.min.js"></script>
+	<script src="/app/target/classes/templates/Tareas/assets/js/breakpoints.min.js"></script>
+	<script src="/app/target/classes/templates/Tareas/assets/js/util.js"></script>
+	<script src="/app/target/classes/templates/Tareas/assets/js/main.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="/app/target/classes/templates/Tareas/index.js"></script>
+
+</body>
+
+</html>
